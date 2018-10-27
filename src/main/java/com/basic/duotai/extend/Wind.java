@@ -1,4 +1,4 @@
-package com.basic.duotai.example1;
+package com.basic.duotai.extend;
 
 /**
  * Created by lsh on 2018/10/27.
