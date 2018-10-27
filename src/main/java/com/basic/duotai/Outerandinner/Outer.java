@@ -15,7 +15,7 @@ public class Outer {
         /**
          * 如果外部类和内部类具有相同的成员变量或方法
          * 内部类默认访问自己的成员变量或方法
-         * 如果要访问外部类的成员变量，可以使用 this 关键字
+         * 如果要访问外部类的成员变量，可以使用 thistest 关键字
          * */
         void test(){
             System.out.println("外部类的name " + Outer.this.name);
