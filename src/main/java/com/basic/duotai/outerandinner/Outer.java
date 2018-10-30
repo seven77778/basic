@@ -1,4 +1,4 @@
-package com.basic.duotai.Outerandinner;
+package com.basic.duotai.outerandinner;
 
 /**
  * Created by lsh on 2018/10/27.
@@ -27,5 +27,6 @@ public class Outer {
         Outer outer = new Outer();
         Inner inner = outer.new Inner();
         inner.test();
+        System.out.println(Runtime.getRuntime().maxMemory());
     }
 }
