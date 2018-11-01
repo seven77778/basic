@@ -1,4 +1,4 @@
-package com.basic.duotai.constant;
+package com.basic.jvm.constant;
 
 import org.junit.Test;
 

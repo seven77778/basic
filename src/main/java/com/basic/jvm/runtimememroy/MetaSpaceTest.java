@@ -1,4 +1,4 @@
-package com.basic.runtimememroy;
+package com.basic.jvm.runtimememroy;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

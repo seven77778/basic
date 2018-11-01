@@ -1,4 +1,4 @@
-package com.basic.duotai.memory;
+package com.basic.jvm.memory;
 
 import org.junit.Test;
 
