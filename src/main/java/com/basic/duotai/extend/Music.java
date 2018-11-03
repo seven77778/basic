@@ -17,6 +17,8 @@ public class Music {
         i.play(Node.C_SHARP);
     }
 
+    private transient long fastTime;
+
     public static void main(String[] args) {
         Wind flute = new Wind();
         tune(flute);
@@ -24,4 +26,22 @@ public class Music {
         tune(instrument);
     }
 
+
+    public Music() {
+        this(System.currentTimeMillis());
+        System.out.println("void ");
+    }
+
+    public Music(long time) {
+        fastTime = time;
+        System.out.println("with ");
+    }
+
+    /**
+     * data 方法重写了toString...
+     * */
+    @Override
+    public String toString(){
+        return "music";
+    }
 }
