@@ -1,9 +1,13 @@
 package com.basic.jvm.volatiletest;
 
+import java.io.Serializable;
+
 import org.junit.Test;
 
-public class VolatileTest {
+public class VolatileTest implements Serializable{
     public static volatile int num;
+
+
 
     public void add(){
         for(int i=0;i<1000;i++)
@@ -26,6 +30,7 @@ public class VolatileTest {
 //        Thread.sleep(1000);
 
         System.out.println("num : "+num);
+        //展示当前活动线程
         Thread.currentThread().getThreadGroup().list();
     }
 

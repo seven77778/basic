@@ -7,6 +7,7 @@ package com.basic.duotai.extend;
  * @date 2018/10/27
  */
 public class Wind extends Instrument {
+    @Override
     void play(Node n){
         System.out.println("wind play " + n);
     }
