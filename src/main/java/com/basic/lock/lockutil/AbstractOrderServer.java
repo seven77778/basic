@@ -1,4 +1,4 @@
-package com.basic.lock.util;
+package com.basic.lock.lockutil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

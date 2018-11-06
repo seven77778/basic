@@ -1,6 +1,6 @@
 package com.basic.lock.task;
 
-import com.basic.lock.util.OrderService;
+import com.basic.lock.lockutil.OrderService;
 
 import java.util.concurrent.CountDownLatch;
 

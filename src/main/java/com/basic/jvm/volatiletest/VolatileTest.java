@@ -15,6 +15,9 @@ public class VolatileTest implements Serializable{
     }
 
 
+    /**
+     * 可以知道volatile并不适用这里
+     * */
     @Test
     public void test() throws Exception{
         Thread[] threads = new Thread[20];
@@ -27,8 +30,6 @@ public class VolatileTest implements Serializable{
             System.out.println(Thread.activeCount());
             Thread.yield();
         }
-//        Thread.sleep(1000);
-
         System.out.println("num : "+num);
         //展示当前活动线程
         Thread.currentThread().getThreadGroup().list();

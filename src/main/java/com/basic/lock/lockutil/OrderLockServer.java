@@ -1,4 +1,4 @@
-package com.basic.lock.util;
+package com.basic.lock.lockutil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,9 +12,9 @@ import java.util.Date;
 public class OrderLockServer extends AbstractOrderServer implements OrderService {
     static int num =0;
 
-//    @Override
-//    synchronized public String getOrderNo(){
-//        SimpleDateFormat format = new SimpleDateFormat("YYYYMMDDHHMMSS");
-//        return format.format(new Date())+(num++);
-//    }
+    @Override
+    synchronized public String getOrderNo(){
+        SimpleDateFormat format = new SimpleDateFormat("YYYYMMDDHHMMSS");
+        return format.format(new Date())+(num++);
+    }
 }

@@ -1,13 +1,14 @@
 package com.basic.lock.jvmlock;
 
 import com.basic.lock.task.OrderTask;
-import com.basic.lock.util.OrderLockServer;
-import com.basic.lock.util.OrderService;
+import com.basic.lock.lockutil.OrderLockServer;
+import com.basic.lock.lockutil.OrderService;
+import com.util.BasicThreadFactory;
 import org.junit.Test;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by LSH on 2018/11/6.
@@ -18,7 +19,11 @@ import java.util.concurrent.Executors;
 public class JvmLockOrder {
 
     public static void main(String[] args) {
+        //手动创建线程池
         ExecutorService executorService = Executors.newCachedThreadPool();
+
+        //ExecutorService executorService = BasicThreadFactory.getExecutorService();
+
         final CountDownLatch latch  = new CountDownLatch(1);
         //todo 这个写法感觉不对啊
 //        OrderService orderService = new OrderLockServer();
@@ -30,22 +35,25 @@ public class JvmLockOrder {
         executorService.shutdown();
     }
 
+    /**
+     * 手动创建线程池
+     * coresize为5时，多个线程复用，为10时，名字都不同
+     * 类锁和对象锁
+     * */
     @Test
-    public void test(){
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        final CountDownLatch latch = new CountDownLatch(1);
-        final OrderService orderService = new OrderLockServer();
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                for(int i=0;i<10;i++){
-                    executorService.submit(new OrderTask(latch, orderService));
-                    System.out.println("jj");
-                }
-
-            }
-        });
+    public void test() throws Exception{
+        final ExecutorService executorService = BasicThreadFactory.getExecutorService();
+        final CountDownLatch latch = new CountDownLatch(10);
+        //final OrderService orderService = new OrderLockServer();
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            final OrderService orderService = new OrderLockServer();
+            executorService.execute(() -> System.out
+                .printf("线程名称 %s 订单号： %s \r\n", Thread.currentThread().getName(), orderService.getOrderNo()));
+        }
+        latch.await(500, TimeUnit.MILLISECONDS);
         latch.countDown();
         executorService.shutdown();
+        System.out.println("耗时 " + (System.currentTimeMillis() - time));
     }
 }
