@@ -26,13 +26,13 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
  */
 public class BasicThreadFactory {
     private static final int CORE_POOL_SIZE = 10;
-    private static final int MAXIMUM_POOL_SIZE = 100;
+    private static final int MAXIMUM_POOL_SIZE = 10000;
     private static final long KEEPALIVE_TIME = 200L;
 
     public static ExecutorService getExecutorService(){
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("pool-%d").build();
         ExecutorService service = new ThreadPoolExecutor(CORE_POOL_SIZE,MAXIMUM_POOL_SIZE,KEEPALIVE_TIME, TimeUnit.MILLISECONDS,
-            new LinkedBlockingDeque<Runnable>(1024),threadFactory,new AbortPolicy());
+            new LinkedBlockingDeque<Runnable>(),threadFactory,new AbortPolicy());
         return service;
     }
 }
