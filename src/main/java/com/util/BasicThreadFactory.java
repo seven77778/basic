@@ -32,7 +32,7 @@ public class BasicThreadFactory {
     public static ExecutorService getExecutorService(){
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("pool-%d").build();
         ExecutorService service = new ThreadPoolExecutor(CORE_POOL_SIZE,MAXIMUM_POOL_SIZE,KEEPALIVE_TIME, TimeUnit.MILLISECONDS,
-            new LinkedBlockingDeque<Runnable>(),threadFactory,new AbortPolicy());
+            new LinkedBlockingDeque<Runnable>(1024),threadFactory,new AbortPolicy());
         return service;
     }
 }

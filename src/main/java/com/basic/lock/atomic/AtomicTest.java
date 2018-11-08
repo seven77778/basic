@@ -21,6 +21,7 @@ public class AtomicTest {
     private void add() {
         num++;
         atomicInteger.incrementAndGet();
+        atomicInteger.getAndAdd(1);
     }
 
     /**
