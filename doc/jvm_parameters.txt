@@ -1,0 +1,57 @@
+优化前配置
+
+
+/java/bin/java
+ -Djava.util.logging.config.file=/logging.properties
+ -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+ -Djdk.tls.ephemeralDHKeySize=2048
+ -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+ -server -Xms8g -Xmx8g -XX:PermSize=96m -XX:MaxPermSize=512m -Xmn512m
+ -XX:+UseConcMarkSweepGC
+ -XX:+UseCMSCompactAtFullCollection
+ -XX:CMSMaxAbortablePrecleanTime=5000
+ -XX:+CMSClassUnloadingEnabled
+ -XX:+UseCMSInitiatingOccupancyOnly
+ -XX:CMSInitiatingOccupancyFraction=80
+ -XX:+HeapDumpOnOutOfMemoryError
+ -XX:HeapDumpPath=/home/admin/logs/java.hprof
+ -Xloggc:/home/admin/logs/gc.log -XX:+PrintGCDetails
+ -XX:+PrintGCDateStamps
+ -Djava.awt.headless=true
+ -Dsun.net.client.defaultConnectTimeout=10000
+ -Dsun.net.client.defaultReadTimeout=30000
+ -XX:MaxDirectMemorySize=4g -XX:SurvivorRatio=10
+ -XX:+ExplicitGCInvokesConcurrent -Dsun.rmi.dgc.server.gcInterval=2592000000
+ -Dsun.rmi.dgc.client.gcInterval=2592000000 -XX:ParallelGCThreads=4
+ -Dfile.encoding=GB18030 -javaagent:/home/admin/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar
+ -Darms.licenseKey=xxx -Darms.appId=xxx -Dcatalina.logs=/home/admin/logs/catalina
+ -Djava.security.egd=file:/dev/./urandom -Dlog4j.defaultInitOverride=true
+ -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true
+ -Dproject.name= classpath /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
+ -Dcatalina.base=/home/admin/.default -Dcatalina.home=/opt/tomcat
+ -Djava.io.tmpdir=/home/admin/.default/temp org.apache.catalina.startup.Bootstrap start
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ -XX:+PrintCompilation 打印jit代码，编译器产生的本地代码会比Javac 产生的字节码更加优秀
+ -Xms 最小堆
+ -Xmx 最大堆
+ -Xmn 年轻代 此处的大小是（eden+ 2 survivor space).与jmap -heap中显示的New gen是不同的。
+ 整个堆大小=年轻代大小 + 年老代大小 + 持久代大小.
+ 增大年轻代后,将会减小年老代大小.此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8
+ ——————————————————————————————————————————————————————————————————————————————————
+ air:
+ -server
+ -Xms8g-Xmx8g
+ -XX: MetaspaceSize=96m
+ -XX: MaxMetaspaceSize=512m
+ -XX: +UseConcMarkSweepGC
+ -XX: +UseCMSCompactAtFullCollection
+ -XX: CMSMaxAbortablePrecleanTime=5000
+ -XX: +CMSClassUnloadingEnabled
+ -XX: +UseCMSInitiatingOccupancyOnly
+ -XX: CMSInitiatingOccupancyFraction=80
+ -XX: +HeapDumpOnOutOfMemoryError
+
+ young GC 明显少于我们
+ ___________________________________________

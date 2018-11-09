@@ -47,7 +47,8 @@ public class AtomicTest {
     }
 
     /**
-     * 测试compareAndSet(int expect, int update) -- 如果传入的expect等于atomicInteger现有的值，就将atomicInteger改为update
+     * 测试compareAndSet(int expect, int update) -- 如果传入的expect等于atomicInteger现有的值
+     * 就将atomicInteger改为update
      */
     @Test
     public void test2() {
