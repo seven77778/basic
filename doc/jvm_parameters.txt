@@ -52,6 +52,13 @@
  -XX: +UseCMSInitiatingOccupancyOnly
  -XX: CMSInitiatingOccupancyFraction=80
  -XX: +HeapDumpOnOutOfMemoryError
+ CATALINA_OPTS="${CATALINA_OPTS} -XX:MaxDirectMemorySize=512m"
+ CATALINA_OPTS="${CATALINA_OPTS} -XX:SurvivorRatio=10 -XX:NewRatio=2"
 
  young GC 明显少于我们
  ___________________________________________
+hotel：
+
+-Djava.util.logging.config.file=/home/admin/hcs/.default/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -server -Xms8g -Xmx8g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:NewRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSMaxAbortablePrecleanTime=5000 -XX:+CMSClassUnloadingEnabled -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=80 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/admin/hcs/logs/java.hprof -Xloggc:/home/admin/logs/gc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Djava.awt.headless=true -Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=30000 -XX:MaxDirectMemorySize=4g -XX:SurvivorRatio=10 -XX:+ExplicitGCInvokesConcurrent -Dsun.rmi.dgc.server.gcInterval=2592000000 -Dsun.rmi.dgc.client.gcInterval=2592000000 -XX:ParallelGCThreads=4 -Dfile.encoding=GB18030 -javaagent:/home/admin/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar -Darms.licenseKey=g7runio4j5@6c8c85a9d71bc3c -Darms.appId=g7runio4j5@bf22fc050d62e9d -Dcatalina.logs=/home/admin/hcs/logs/catalina -Djava.security.egd=file:/dev/./urandom -Dlog4j.defaultInitOverride=true -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true -Dproject.name=hcs -classpath /opt/taobao/tomcat/bin/bootstrap.jar:/opt/taobao/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/home/admin/hcs/.default -Dcatalina.home=/opt/taobao/tomcat -Djava.io.tmpdir=/home/admin/hcs/.default/temp org.apache.catalina.startup.Bootstrap start
+
+————————————————————————————————————————
