@@ -102,7 +102,7 @@ public class MetaSpaceTest {
      * */
     @Test
     public void test5(){
-        //String ss = "计算机学习";
+        //String listener = "计算机学习";
         String s = "ab";
         String str1 = new StringBuilder("计算机").append("学习").toString();
         System.out.println(str1.intern() == str1); //true
