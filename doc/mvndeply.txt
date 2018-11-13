@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -Dfile=D:/okhttp/okhttp-3.11.0.jar -DgroupId=com.squareup.okhttp3 -DartifactId=okhttp -Dversion=3.11.0 -Dpackaging=jar -Durl=http://xxxx:8082/repository/3rd-party -DrepositoryId=sf -s D:/software/apache-maven-3.5.0-bin/apache-maven-3.5.0/conf/settings.xml -DpomFile=D:\okhttp\pom.xml

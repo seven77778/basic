@@ -39,6 +39,11 @@
  -Xmn 年轻代 此处的大小是（eden+ 2 survivor space).与jmap -heap中显示的New gen是不同的。
  整个堆大小=年轻代大小 + 年老代大小 + 持久代大小.
  增大年轻代后,将会减小年老代大小.此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8
+ -XX:ReservedCodeCacheSize=32m	保留代码占用的内存容量
+ -XX:+CMSClassUnloadingEnabled 使用CMS垃圾回收机制的时候是否启用类卸载功能，清理持久代，移除不再使用的classes，需要配合使用+UseConcMarkSweepGC
+
+ -XX:+ExplicitGCInvokesConcurrent and -XX:+ExplicitGCInvokesConcurrentAndUnloadsClasses
+ 调用system.gc()的时候，都执行CMS GC，而不是Full GC，所以也要配合cms使用
  ——————————————————————————————————————————————————————————————————————————————————
  air:
  -server
@@ -59,6 +64,33 @@
  ___________________________________________
 hotel：
 
--Djava.util.logging.config.file=/home/admin/hcs/.default/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -server -Xms8g -Xmx8g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:NewRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSMaxAbortablePrecleanTime=5000 -XX:+CMSClassUnloadingEnabled -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=80 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/admin/hcs/logs/java.hprof -Xloggc:/home/admin/logs/gc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Djava.awt.headless=true -Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=30000 -XX:MaxDirectMemorySize=4g -XX:SurvivorRatio=10 -XX:+ExplicitGCInvokesConcurrent -Dsun.rmi.dgc.server.gcInterval=2592000000 -Dsun.rmi.dgc.client.gcInterval=2592000000 -XX:ParallelGCThreads=4 -Dfile.encoding=GB18030 -javaagent:/home/admin/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar -Darms.licenseKey=g7runio4j5@6c8c85a9d71bc3c -Darms.appId=g7runio4j5@bf22fc050d62e9d -Dcatalina.logs=/home/admin/hcs/logs/catalina -Djava.security.egd=file:/dev/./urandom -Dlog4j.defaultInitOverride=true -Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true -Dproject.name=hcs -classpath /opt/taobao/tomcat/bin/bootstrap.jar:/opt/taobao/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/home/admin/hcs/.default -Dcatalina.home=/opt/taobao/tomcat -Djava.io.tmpdir=/home/admin/hcs/.default/temp org.apache.catalina.startup.Bootstrap start
+-Djava.util.logging.config.file=/home/admin/xxx/.default/conf/logging.properties
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+-Djdk.tls.ephemeralDHKeySize=2048
+-Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+-server -Xms8g -Xmx8g -XX:MetaspaceSize=512m
+-XX:MaxMetaspaceSize=512m -XX:NewRatio=2
+-XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection
+-XX:CMSMaxAbortablePrecleanTime=5000
+-XX:+CMSClassUnloadingEnabled -XX:+UseCMSInitiatingOccupancyOnly
+-XX:CMSInitiatingOccupancyFraction=80 -XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=/home/admin/hcs/logs/java.hprof -Xloggc:/home/admin/logs/gc.log
+-XX:+PrintGCDetails -XX:+PrintGCDateStamps -Djava.awt.headless=true
+-Dsun.net.client.defaultConnectTimeout=10000 -Dsun.net.client.defaultReadTimeout=30000
+-XX:MaxDirectMemorySize=4g -XX:SurvivorRatio=10 -XX:+ExplicitGCInvokesConcurrent
+-Dsun.rmi.dgc.server.gcInterval=2592000000 -Dsun.rmi.dgc.client.gcInterval=2592000000
+-XX:ParallelGCThreads=4
+-Dfile.encoding=GB18030
+-javaagent:/home/admin/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar
+-Darms.licenseKey=xxx
+-Darms.appId=xxx
+-Dcatalina.logs=/home/admin/xxx/logs/catalina
+-Djava.security.egd=file:/dev/./urandom -Dlog4j.defaultInitOverride=true
+-Dorg.apache.tomcat.util.http.ServerCookie.ALLOW_EQUALS_IN_VALUE=true
+-Dproject.name=xxx
+-classpath /tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
+-Dcatalina.base=/home/admin/.default
+-Dcatalina.home=/opt/tomcat
+-Djava.io.tmpdir=/home/admin/xxx/.default/temp org.apache.catalina.startup.Bootstrap start
 
 ————————————————————————————————————————
