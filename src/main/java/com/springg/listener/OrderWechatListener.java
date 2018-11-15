@@ -1,7 +1,7 @@
 package com.springg.listener;
 
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by LSH on 2018/11/13.
@@ -9,10 +9,11 @@ import org.springframework.context.ApplicationListener;
  * @author LSH
  * @date 2018/11/13
  */
-public class OrderWechatListener implements ApplicationListener {
+@Service
+public class OrderWechatListener implements ApplicationListener<OrderEvent> {
 
     @Override
-    public void onApplicationEvent(ApplicationEvent event) {
+    public void onApplicationEvent(OrderEvent orderEvent) {
         System.out.println("send wechat");
     }
 }

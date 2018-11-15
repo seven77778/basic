@@ -17,7 +17,7 @@ public class HashmapTest {
     @Test
     public void test(){
         HashMap map = Maps.newHashMap();
-        map.put(1,1);
+        map.put(null,null);
     }
 
 

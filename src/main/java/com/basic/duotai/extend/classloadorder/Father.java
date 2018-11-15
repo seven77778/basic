@@ -7,16 +7,11 @@ package com.basic.duotai.extend.classloadorder;
  * @date 2018/11/02
  */
 public class Father {
-
-    protected static String privateName = "privateName";
-    protected String pubAge ="18";
-
+    protected static String fatherName = "fatherName";
     static {
-        //System.out.println(pubAge); //静态成员不能直接访问非静态成员
         System.out.println("father static");
     }
-
-    public Father(){
+    public Father(String name){
         System.out.println("father constructor");
     }
 }

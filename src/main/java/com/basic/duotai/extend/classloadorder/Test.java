@@ -25,6 +25,5 @@ public class Test {
      * */
     @org.junit.Test
     public void test2(){
-        System.out.println(Father.privateName);
     }
 }

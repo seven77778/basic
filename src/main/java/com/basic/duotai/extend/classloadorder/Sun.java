@@ -7,6 +7,15 @@ import org.junit.*;
  *
  * @author lsh
  * @date 2018/11/02
+ *
+ * There is no default constructor available in 'org.springframework.context.ApplicationEven
+ * 父类中只有有参的构造方法时，子类只能显式的调用
+ *
+ * 先执行父类构造方法，再执行子类构造方法
+ *
+ *
+ * 除非getStr() 是 static ，否则无法调用，因为调用父类构造方法的时候，子类还没实例化
+ *
  */
 public class Sun extends Father {
     static {
@@ -14,7 +23,16 @@ public class Sun extends Father {
     }
 
     public Sun() {
-        System.out.println("Sun constructor");
+        super("");
+        getStr2();
+        System.out.println("sun construct");
+    }
+    static String getStr(){
+        return "";
+    }
+
+    String getStr2(){
+        return "";
     }
 
     /**
@@ -31,4 +49,14 @@ public class Sun extends Father {
         new Sun();
     }
 
+    /**
+     * father static
+       Sun static
+       father constructor
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        new Sun();
+    }
 }
