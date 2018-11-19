@@ -44,6 +44,27 @@
 
  -XX:+ExplicitGCInvokesConcurrent and -XX:+ExplicitGCInvokesConcurrentAndUnloadsClasses
  调用system.gc()的时候，都执行CMS GC，而不是Full GC，所以也要配合cms使用
+
+ $$$$$$$$$$$$$$$$$$$$$
+ 建议优化：
+ 1.建议替换的参数：
+ XX:+ExplicitGCInvokesConcurrent -> -XX:+ExplicitGCInvokesConcurrentAndUnloadsClasses
+
+ 2.自动生成的参数
+ -Xmx5440M
+   -Xms5440M
+   -XX:MaxMetaspaceSize=512M
+   -XX:MetaspaceSize=512M
+   -XX:+UseG1GC
+   -XX:MaxGCPauseMillis=100
+   -XX:+ParallelRefProcEnabled
+   -XX:+HeapDumpOnOutOfMemoryError
+   -XX:+PrintClassHistogramBeforeFullGC
+   -XX:+PrintClassHistogramAfterFullGC
+   -XX:+PrintGCApplicationConcurrentTime
+   -XX:+PrintGCApplicationStoppedTime
+   -XX:+PrintTenuringDistribution
+   -XX:+PrintHeapAtGC
  ——————————————————————————————————————————————————————————————————————————————————
  air:
  -server

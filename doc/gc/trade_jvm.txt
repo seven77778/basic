@@ -1,0 +1,28 @@
+-XX:+CMSClassUnloadingEnabled
+-XX:CMSInitiatingOccupancyFraction=80
+-XX:CMSMaxAbortablePrecleanTime=5000
+-XX:+ExplicitGCInvokesConcurrent
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=/home/admin/logs/java.hprof
+-XX:InitialHeapSize=8589934592 -XX:MaxDirectMemorySize=4294967296 -XX:MaxHeapSize=8589934592
+-XX:MaxMetaspaceSize=268435456 -XX:MetaspaceSize=268435456 -XX:NewRatio=2
+-XX:OldPLABSize=16 -XX:ParallelGCThreads=4 -XX:+PrintGC -XX:+PrintGCDateStamps
+-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:SurvivorRatio=10 -XX:+UseCMSCompactAtFullCollection
+-XX:+UseCMSInitiatingOccupancyOnly -XX:+UseCompressedClassPointers
+-XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseParNewGC
+
+very ok
+
+###########################################################
+有问题的gc log：
+
+[GC 142386.775: [ParNew: 27810K->20924K(2563200K), 0.0385051 secs] 247518K->240660K(8155648K), 0.0387428 secs]【晋升28KB，间隔142370.39s】
+[GC 16.388: [ParNew: 2409189K->191659K(2563200K), 2.8533286 secs] 2409189K->191659K(8155648K), 2.8534742 secs]【晋升0KB，间隔0s】
+
+
+2018-11-17T08:57:46.073+0800: 142386.775: [GC (GCLocker Initiated GC) 2018-11-17T08:57:46.073+0800: 142386.775:
+[ParNew: 27810K->20924K(2563200K), 0.0385051 secs] 247518K->240660K(8155648K), 0.0387428 secs] [Times: user=0.13 sys=0.00, real=0.04 secs]
+
+
+2018-11-15T17:24:55.686+0800: 16.388: [GC (Allocation Failure) 2018-11-15T17:24:55.686+0800: 16.388:
+[ParNew: 2409189K->191659K(2563200K), 2.8533286 secs] 2409189K->191659K(8155648K), 2.8534742 secs] [Times: user=0.30 sys=0.12, real=2.85 secs]
