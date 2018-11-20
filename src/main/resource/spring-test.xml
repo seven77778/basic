@@ -7,11 +7,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
-    <context:annotation-config/>
-    <context:component-scan base-package="com.springg"></context:component-scan>
+    <context:component-scan base-package="com.designmode"></context:component-scan>
 
-    <bean id="orderService" class="com.springg.listener.OrderService" scope="singleton"></bean>
-    <!--<bean id="OrderListener" class="com.springg.listener.OrderListener"></bean>-->
 
 </beans>

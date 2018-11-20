@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @author LSH
  * @date 2018/11/14
  */
-@Service
+@Service("normal")
 public class NormalDiscount implements IDiscount {
     @Override
     public String getType() {

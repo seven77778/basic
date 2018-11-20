@@ -1,11 +1,16 @@
 package com.designmode.strategy;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 /**
  * Created by LSH on 2018/11/14.
@@ -15,25 +20,13 @@ import java.util.Map;
  *
  * 收费服务
  * 1.没有无参数的构造方法， Caused by: java.lang.NoSuchMethodException: com.designmode.strategy.PayService.<init>()
+ * 2.auto + map , 名字是默认类名，加component名字，但是gettype无用
  */
-@Component
+@Component("pay")
 public class PayService {
 
-
-    static Map<String, IDiscount> map = Maps.newHashMap();
-    static List<IDiscount> list;
-    //list如何初始化的
-//    public PayService(List<IDiscount> list) {
-//        for(IDiscount iDiscount:list){
-//            map.put(iDiscount.getType(),iDiscount);
-//        }
-//    }
-
-    static{
-        for(IDiscount iDiscount:list){
-            map.put(iDiscount.getType(),iDiscount);
-        }
-    }
+    @Autowired
+    Map<String, IDiscount> map = Maps.newHashMap();
 
 
     public double payDiscount(String type, double cost){

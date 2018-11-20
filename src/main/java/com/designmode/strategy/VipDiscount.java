@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @author LSH
  * @date 2018/11/14
  */
-@Service
+@Service("vip")
 public class VipDiscount implements IDiscount {
     @Override
     public String getType() {
