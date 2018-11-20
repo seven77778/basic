@@ -1,4 +1,4 @@
-package com.basic.jvm.pringsettings;
+package com.basic.gc;
 
 import org.junit.Test;
 

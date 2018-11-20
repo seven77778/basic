@@ -8,9 +8,10 @@ import org.junit.Test;
  * @author lsh
  * @date 2018/11/05
  */
-public class MyThread extends Thread {
+public class MyThread  extends Thread{
 
     private volatile boolean stop = false;
+    private static volatile boolean stopMain = true;
 
     public void stopMy(){
         stop = true;
@@ -18,6 +19,7 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
+
         int i=0;
         while (!stop){
             System.out.println(i++);
@@ -27,6 +29,7 @@ public class MyThread extends Thread {
 
     @Test
     public void test() throws Exception{
+
         MyThread thread = new MyThread();
         thread.start();//start with run , difference
         Thread.sleep(10);
@@ -36,4 +39,10 @@ public class MyThread extends Thread {
             Thread.yield();
         }
     }
+
+
+
+
+
+
 }
