@@ -1,26 +1,22 @@
 package com.basic.datastructrue.map.hashmap;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Maps;
 import org.junit.Test;
 
 /**
  * Created by lsh on 2018/11/9 09:51.
  *
- * @author lsh
- * @date 2018/11/09
  * java数据结构
+ *
+ * HashMap之所以线程不安全，就是resize出的问题
  *
  *1.initialCapacity 初始44 -> 64  threshold
  *2.HashIterator modCount 作用，遍历map时，会将modcount赋给expectedModCount，如果遍历过程中
