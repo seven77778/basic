@@ -7,11 +7,17 @@ package com.basic.duotai.extend.classloadorder;
  * @date 2018/11/02
  */
 public class Father {
-    protected static String fatherName = "fatherName";
+      String fatherName = "fatherName";
     static {
         System.out.println("father static");
     }
     public Father(String name){
+
         System.out.println("father constructor");
+        this.fatherName="5555";
+    }
+
+    public void test(int a){
+        this.fatherName = a+"";
     }
 }

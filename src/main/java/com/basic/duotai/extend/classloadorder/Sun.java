@@ -22,16 +22,26 @@ public class Sun extends Father {
         System.out.println("Sun static");
     }
 
+    /**
+     * 父类没有无参构造方法，必须在子类中显示调用
+     */
     public Sun() {
         super("");
+
+        this.fatherName="123";
         getStr2();
         System.out.println("sun construct");
+        System.out.println(super.fatherName);
     }
+
+
+
     static String getStr(){
         return "";
     }
 
     String getStr2(){
+        this.test();
         return "";
     }
 
@@ -57,6 +67,7 @@ public class Sun extends Father {
      * @param args
      */
     public static void main(String[] args) {
-        new Sun();
+       Sun sun = new Sun();
+        System.out.println(sun.fatherName);
     }
 }

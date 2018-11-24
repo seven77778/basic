@@ -42,9 +42,6 @@ public class BasicThreadTest extends Thread {
         }
 
     }
-
-
-
         class RunTest implements Runnable{
 
             @Override
@@ -53,6 +50,28 @@ public class BasicThreadTest extends Thread {
             }
         }
 
+    /**
+     * 线程优先级
+     * 优先级10 也不一定 比优先级1 先执行
+     */
+    @Test
+    public void test3() throws Exception{
+        Thread thread1 = new Thread(()-> System.out.println("thread1"));
+        Thread thread2 = new Thread(()-> System.out.println("thread2"));
+        Thread thread3 = new Thread(()-> System.out.println("thread3"));
+        thread3.setDaemon(true);
+        thread3.setPriority(8);
+        thread1.setPriority(1);
+        thread2.setPriority(10);
+
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+
+        Thread.sleep(500);
+
+    }
 
 
 }

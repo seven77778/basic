@@ -1,7 +1,9 @@
 package com.basic.gc;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.UnmarshallerImpl;
 import org.junit.Test;
 
 /**
@@ -26,22 +28,31 @@ import org.junit.Test;
  */
 public class FinalizeTest {
 
-    static AtomicInteger aliveCount = new AtomicInteger(0);
+    static LongAdder aliveCount = new LongAdder();
 
     @Override
     protected void finalize() throws Throwable {
-        FinalizeTest.aliveCount.decrementAndGet();
+        FinalizeTest.aliveCount.decrement();
     }
 
     public FinalizeTest() {
-        aliveCount.incrementAndGet();
+        aliveCount.increment();
     }
 
+    /**
+     * Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded
+     at java.lang.ref.Finalizer.register(Finalizer.java:87)
+     at java.lang.Object.<init>(Object.java:37)
+     at com.basic.gc.FinalizeTest.<init>(FinalizeTest.java:38)
+     at com.basic.gc.FinalizeTest.main(FinalizeTest.java:44)
+     Heap dump file created [33250082 bytes in 0.239 secs]
+     Heap
+     */
     public static void main(String args[]) {
         for (int i = 0;; i++) {
             FinalizeTest f = new FinalizeTest();
             if ((i % 100_000) == 0) {
-                System.out.format("After creating %d objects, %d are still alive.%n", new Object[] {i, FinalizeTest.aliveCount.get() });
+                System.out.format("After creating %d objects, %d are still alive.%n", new Object[] {i, FinalizeTest.aliveCount.intValue() });
             }
         }
     }
@@ -51,6 +62,28 @@ public class FinalizeTest {
      */
     @Test
     public void test(){
+        FinalizeTest f = new FinalizeTest();
+        f=null;
+        System.gc();
+    }
 
+    /**
+     * UnmarshallerImpl
+     * 情景复现，测试oom
+     * -XX:+PrintGCDetails -Xmx20m -Xms20m -Xmn10m -XX:MetaspaceSize=20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:\oomdum
+     * 结果：
+     * 被类加载器"bootstrap class loader"加载的11,689个"java.lang.ref.Finalizer"实例占了12,162,280 (85.90%)字节.
+
+     关键字
+     java.lang.ref.Finalizer
+     */
+    @Test
+    public void test2(){
+        for(int i=0;;i++) {
+            UnmarshallerImpl unmarshaller = new UnmarshallerImpl(null, null);
+            if ((i % 100_000) == 0) {
+                System.out.format("After creating %d objects.%n", new Object[] {i });
+            }
+        }
     }
 }
