@@ -48,10 +48,11 @@ public class FinalizeTest {
      Heap dump file created [33250082 bytes in 0.239 secs]
      Heap
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         for (int i = 0;; i++) {
             FinalizeTest f = new FinalizeTest();
             if ((i % 100_000) == 0) {
+                Thread.sleep(10);
                 System.out.format("After creating %d objects, %d are still alive.%n", new Object[] {i, FinalizeTest.aliveCount.intValue() });
             }
         }
