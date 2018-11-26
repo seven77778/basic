@@ -1,5 +1,8 @@
 package com.basic.gc;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
 /**
@@ -10,15 +13,25 @@ import org.junit.Test;
  */
 public class LocalGCTest {
 
-    public static int _1mb = 1024*1024;
+    public static int _1mb = 20*1024;
 
     /**
-     * -XX:+PrintGCDetails
+     * -XX:+PrintGCDetails -Xmx100m -Xms100m  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:\oomdum
+     *
+     * jinfo --  -XX:MaxNewSize=34603008  -XX:OldSize=70254592
+     *堆内存100m，默认1:2，新生代34左右，老年代66
+     * 后面s0，s1均为空。
+     * 动态年龄对象判定--如果 Survivor相同年龄的对象总和，大于Survivor空间一半，大于等于该年龄的对象，直接进入老年代
+     * 新生代打印的是新生代总空间的90%
      */
     @Test
-    public void test(){
-        byte[] b = new byte[_1mb];
-        System.gc();
+    public void test() throws Exception{
+        List list = Lists.newArrayList();
+        for(int i=0;;i++) {
+            byte[] b = new byte[_1mb];
+            Thread.sleep(50);
+            list.add(b);
+        }
     }
 
     /**

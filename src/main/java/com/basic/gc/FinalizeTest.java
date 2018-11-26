@@ -50,10 +50,11 @@ public class FinalizeTest {
      *
      *-XX:+PrintGCDetails -Xmx20m -Xms20m -Xmn10m -XX:MetaspaceSize=20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:\oomdum
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         for (int i = 0;; i++) {
             FinalizeTest f = new FinalizeTest();
             if ((i % 100_000) == 0) {
+                Thread.sleep(10);
                 System.out.format("After creating %d objects, %d are still alive.%n", new Object[] {i, FinalizeTest.aliveCount.intValue() });
             }
         }
