@@ -47,6 +47,8 @@ public class FinalizeTest {
      at com.basic.gc.FinalizeTest.main(FinalizeTest.java:44)
      Heap dump file created [33250082 bytes in 0.239 secs]
      Heap
+     *
+     *-XX:+PrintGCDetails -Xmx20m -Xms20m -Xmn10m -XX:MetaspaceSize=20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:\oomdum
      */
     public static void main(String args[]) {
         for (int i = 0;; i++) {
@@ -86,4 +88,8 @@ public class FinalizeTest {
             }
         }
     }
+    /**
+     * -verbose:gc -Xms20M -Xmx20M -XX:+PrintGCDetails -XX:+UnlockDiagnosticVMOptions  -XX:+PrintNMTStatistics -XX:NativeMemoryTracking=summary
+     * 测试堆外内存
+     */
 }
