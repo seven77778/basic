@@ -1,4 +1,4 @@
-package com.basic;
+package com.basic.duotai;
 
 /**
  * Created by lsh on 2018/11/24 18:04

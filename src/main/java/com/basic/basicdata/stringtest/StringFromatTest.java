@@ -1,4 +1,4 @@
-package com.basic.stringtest;
+package com.basic.basicdata.stringtest;
 
 import org.junit.Test;
 

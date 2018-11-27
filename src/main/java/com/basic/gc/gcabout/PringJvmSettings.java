@@ -1,4 +1,4 @@
-package com.basic.gc;
+package com.basic.gc.gcabout;
 
 import org.junit.Test;
 

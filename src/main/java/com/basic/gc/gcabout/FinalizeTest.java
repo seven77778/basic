@@ -1,6 +1,5 @@
-package com.basic.gc;
+package com.basic.gc.gcabout;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.LongAdder;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.UnmarshallerImpl;
@@ -43,8 +42,8 @@ public class FinalizeTest {
      * Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded
      at java.lang.ref.Finalizer.register(Finalizer.java:87)
      at java.lang.Object.<init>(Object.java:37)
-     at com.basic.gc.FinalizeTest.<init>(FinalizeTest.java:38)
-     at com.basic.gc.FinalizeTest.main(FinalizeTest.java:44)
+     at com.basic.gc.gcabout.FinalizeTest.<init>(FinalizeTest.java:38)
+     at com.basic.gc.gcabout.FinalizeTest.main(FinalizeTest.java:44)
      Heap dump file created [33250082 bytes in 0.239 secs]
      Heap
      *
@@ -81,8 +80,9 @@ public class FinalizeTest {
      java.lang.ref.Finalizer
      */
     @Test
-    public void test2(){
+    public void test2() throws Exception{
         for(int i=0;;i++) {
+            Thread.sleep(50);
             UnmarshallerImpl unmarshaller = new UnmarshallerImpl(null, null);
             if ((i % 100_000) == 0) {
                 System.out.format("After creating %d objects.%n", new Object[] {i });
