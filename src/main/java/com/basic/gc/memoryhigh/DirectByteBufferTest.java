@@ -26,9 +26,10 @@ import org.junit.Test;
 public class DirectByteBufferTest {
 
     @Test
-    public void test(){
+    public void test() throws Exception{
         while(true) {
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 10);
+            Thread.sleep(50);
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 1);
         }
     }
 
@@ -37,7 +38,7 @@ public class DirectByteBufferTest {
      * @param args
      */
     public static void main(String[] args) {
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 10);
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024 * 1);
         byte b = 123;
         byteBuffer.put(1,b);
         byte[] by = new byte[]{1,2};
