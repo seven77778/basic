@@ -3,6 +3,7 @@ package com.basic.gc.memoryhigh;
 import java.nio.ByteBuffer;
 
 import org.junit.Test;
+import sun.misc.VM;
 
 /**
  * Created by lsh on 2018/11/27 16:33
@@ -44,5 +45,20 @@ public class DirectByteBufferTest {
         byte[] by = new byte[]{1,2};
         byteBuffer.put(by);
         System.out.println(byteBuffer.get(1));
+    }
+
+    @Test
+    public void test2(){
+        ByteBuffer[] b = new ByteBuffer[]{};
+        //ByteBuffer byteBuffer = new ByteBuffer() {}
+        System.out.println(VM.maxDirectMemory());
+    }
+
+    /**
+     * -XX:NativeMemoryTracking=detail
+     */
+    @Test
+    public void test3(){
+        System.out.println();
     }
 }
