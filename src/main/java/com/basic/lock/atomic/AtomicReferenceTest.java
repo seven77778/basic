@@ -1,25 +1,22 @@
 package com.basic.lock.atomic;
 
 import java.util.concurrent.atomic.AtomicReference;
-
 import org.junit.Test;
 
 /**
- * Created by lsh on 2018/11/8 17:23.
- *
  * @author lsh
  * @date 2018/11/08
  */
 public class AtomicReferenceTest {
 
-    AtomicReference reference = new AtomicReference();
+    private AtomicReference reference = new AtomicReference<Integer>();
 
     /**
      * test AtomicReference
      * */
     @Test
     public void test(){
-
+        reference.compareAndSet(1,2);
         System.out.println(reference.compareAndSet(null,1));
         System.out.println(reference.compareAndSet(1,2));
         System.out.println(reference.get());
