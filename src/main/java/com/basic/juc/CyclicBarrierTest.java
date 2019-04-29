@@ -13,7 +13,10 @@ public class CyclicBarrierTest {
 
     @Test
     public void test(){
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(';')
+        CyclicBarrier cyclicBarrier = new CyclicBarrier('a');
+
+        System.out.println((int)'a');
+
     }
 
 
