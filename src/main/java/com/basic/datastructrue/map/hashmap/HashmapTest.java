@@ -1,12 +1,7 @@
 package com.basic.datastructrue.map.hashmap;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
@@ -26,16 +21,14 @@ public class HashmapTest {
 
     @Test
     public void test(){
-        HashMap map = new HashMap(44);
+        HashMap<String,String> map = new HashMap(44);
         map.put("a","123");
         map.put("a","1234");
         map.put("b","123");
         map.put("c","123");
-        Iterator iterator = map.entrySet().iterator();
-        while (iterator.hasNext()){
-            Entry next = (Entry)iterator.next();
-            System.out.println(next.getKey());
-        }
+
+        //靠后put的覆盖之前的
+        map.forEach((k,v)-> System.out.println(k +" " + v));
 
     }
 
@@ -57,9 +50,7 @@ public class HashmapTest {
             }
         }).start();
 
-        new Thread(()->{
-            map.put("c","3");
-        }).start();
+        new Thread(()->{ map.put("c","3");}).start();
 
         Thread.sleep(100);
     }
