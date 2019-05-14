@@ -8,7 +8,7 @@ import org.junit.Test;
  * @author lsh
  * @date 2018/11/06
  *
- * 创建线程的两种方法
+ * 创建线程的3种方法
  * 1.继续thread类，重写run方法
  * 2.实现runnable接口
  * 3.callable

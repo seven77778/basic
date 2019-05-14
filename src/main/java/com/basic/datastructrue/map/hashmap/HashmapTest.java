@@ -21,7 +21,7 @@ public class HashmapTest {
 
     @Test
     public void test(){
-        HashMap<String,String> map = new HashMap(44);
+        HashMap<String,String> map = new HashMap<>(44);
         map.put("a","123");
         map.put("a","1234");
         map.put("b","123");

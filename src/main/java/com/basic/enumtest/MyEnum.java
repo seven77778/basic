@@ -11,6 +11,9 @@ package com.basic.enumtest;
  * 枚举类构造方法不允许public
  * */
 public enum MyEnum {
+    /**
+     * enum
+     */
     PAY(1,"payed"),
     NOTPAY(2,"notpay");
 

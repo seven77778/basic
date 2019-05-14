@@ -18,7 +18,10 @@ import org.junit.Test;
  *
  * 尽管目前逃逸分析的技术不是很成熟，但它却是即时编译器优化技术的一个重要发展方向
  * 在今后的虚拟机中，逃逸分析技术肯定会支撑起一些列实用有效的优化技术，逃逸分析技术前途无量
+ *
+ *
  */
+
 public class DoEscapeAnalysis {
 
     public void locate(){
@@ -38,6 +41,7 @@ public class DoEscapeAnalysis {
      * 关闭逃逸分析：218ms 144ms
      * gc 20+  15+
      *
+     * 减少gc次数？
      *
      * */
     @Test

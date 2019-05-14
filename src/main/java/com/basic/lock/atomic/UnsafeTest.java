@@ -29,7 +29,6 @@ public class UnsafeTest {
      * */
     @Test
     public  void test() throws Exception{
-
         Field f = Unsafe.class.getDeclaredField("theUnsafe");
         f.setAccessible(true);
         Unsafe unsafe = (Unsafe) f.get(null);
@@ -55,8 +54,6 @@ public class UnsafeTest {
         myUnsafe.getAndAddInt(this, valueOffset, 2);
         int res = myUnsafe.getAndAddInt(this, valueOffset, 2);
         System.out.println(res);
-
-
     }
 
 }
