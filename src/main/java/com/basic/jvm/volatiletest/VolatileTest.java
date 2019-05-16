@@ -10,8 +10,9 @@ public class VolatileTest implements Serializable{
 
 
     public void add(){
-        for(int i=0;i<1000;i++)
-        num++;
+        for(int i=0;i<1000;i++) {
+            num++;
+        }
     }
 
 

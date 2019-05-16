@@ -13,6 +13,8 @@ public class StringFromatTest {
     /**
      * test string format
      * 1.printf ok，println not ok
+     *
+     * d% 只能 是数字
      */
     @Test
     public void test() {
@@ -20,7 +22,8 @@ public class StringFromatTest {
         System.out.printf("3>7的结果是：%b %n", 3 > 7);
         System.out.printf("100的一半是：%d %n", 100 / 2);
         System.out.printf("hello: %d %n",10/2);
-        System.out.printf("hello %d","1vb");
+        System.out.printf("hello %d",'A');
+
         System.out.println();
     }
 
